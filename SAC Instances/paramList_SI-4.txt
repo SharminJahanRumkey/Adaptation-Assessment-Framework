@@ -1,0 +1,15 @@
+Context|SI-4a[1]|objectives =  Information Change
+MainGoal|SI|4|SI-4|Information system|monitors and analyzes events to detect potential attacks, anomalies and unauthorized connections|high|val(events),val(analysisResult)|1
+MainGoal|SI|7|SI-7|Information system|employs integrity verification tools to detect unauthorized changes to the information|high|val(Information),val(action),sat(integrityStatus)|1
+ReqGoal|SI-4 Req1|services' Monitoring  capability|All the events are monitored and anomalies are detected|1
+moduleGoal|DS SI-4 Goal|Drug services' Monitoring  capability|1
+moduleGoal|AS SI-4 Goal|Alarm services' Monitoring  capability|1
+moduleGoal|MAS SI-4 Goal|Medical Analysis services' Monitoring  capability|1
+strategy|S3 |services' confidence on Monitoring  capability
+InContextOf|SI-4 Main|SI-4a[1]
+SupportedBy|SI-4 Main|S3
+SupportedBy|S3|SI-4 Req1
+SupportedBy|SI-4 Req1|DS SI-4 Goal
+SupportedBy|SI-4 Req1|AS SI-4 Goal
+SupportedBy|SI-4 Req1|MAS SI-4 Goal
+SupportedBy|SI-7 Main|SI-4 Main|sat(integrityStatus)
