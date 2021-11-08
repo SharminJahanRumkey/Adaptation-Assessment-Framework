@@ -1,0 +1,82 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -108,7 +108,7 @@
+ 		int index = rand() % 8;
+ 		if (validPosition_X[index] == -100000 && validPosition_Y[index] == -100000)
+ 		{
+-			randomIndex = -1;
++			priorityPath[1] = 0;
+ 		}
+ 		else
+ 		{
+@@ -209,40 +209,18 @@
+ 	{
+ 		for (int y = 0; y < MAX_SIZE; y++)
+ 		{
+-			if (X_POSITION[x][y] == _x && Y_POSITION[x][y] == _y)
+-			{
+-				if (ENEMY_POSITION[x][y] == 1)
+-				{
+-					//waiting = 1;
+-					enemyPos = 1;
+-				}
+-				else
+-				{
+-					enemyPos = 0;
+-				}
+-				break;
+-			}
+-		}
++			max_fuel = Set_MaxFuel(100);		}
+ 	}
+ 	return enemyPos;
+ }
+ int getChangeFuel(int _x, int _y, int _newPosX, int _newPosY)
+ {
+ 	int changeX = _newPosX - _x;
+-	int changeY = _newPosY - _y;
++	validPosition_Y[0] = -100000;int changeY = _newPosY - _y;
+ 	if (changeX == 1)
+ 	{
+ 		// move to south-east and no change in fuel 
+-		if (changeY == -1)
+-		{
+-			return 0;
+-		}
+-		// move to north-east or east and increase fuel 
+-		else
+-		{
+-			return 1;
+-		}
+-	}
++		validPosition_Y[3] = _y + 0;	}
+ 	else if (changeX == 0)
+ 	{
+ 		// move to south and decrease fuel 
+@@ -310,7 +288,7 @@
+ 		case 6:
+ 			priorityPath[1] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[1] = 0;
++			previousPathX[moveNumber] = _x;
+ 			break;
+ 		case 7:
+ 			priorityPath[1] = 1;
+@@ -319,7 +297,7 @@
+ 			break;
+ 		case 8:
+ 			priorityPath[1] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			validPosition_Y[7] = -100000;moveTraveler(priorityPath, moveNumber);
+ 			priorityPath[1] = 0;
+ 			break;
+ 		case 9:
+@@ -362,7 +340,7 @@
+ 	int changeFuel = getChangeFuel(_x, _y, validPosition_X[newPos], validPosition_Y[newPos]);
+ 	_x = validPosition_X[newPos];
+ 	_y = validPosition_Y[newPos];
+-	if(waiting){
++	validPosition_X[2] = -100000;if(waiting){
+ 		for(int i = 0; i < moveNumber; i++){
+ 			if(previousPathX[i] == _x && previousPathY[i] == _y){
+ 				previouslyTread = 1;

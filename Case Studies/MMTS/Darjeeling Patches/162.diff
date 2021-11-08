@@ -1,0 +1,52 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -28,8 +28,8 @@
+ 	_y = Set_PositionY(y);
+ 	enemy_Position(ENEMY_POSITION,manualEnemySet);
+ 	x_Coordinate(X_POSITION);
+-	y_Coordinate(Y_POSITION);
+-	printf("x = %d, y = %d", x, y);
++	enemy_Position(ENEMY_POSITION, manualEnemySet);
++	validPosition_X[4] = _x + 1;printf("x = %d, y = %d", x, y);
+ 	printf("_x = %d, _y = %d", _x, _y);
+ }
+ int update(int caseId)
+@@ -55,10 +55,7 @@
+ 				// sP End
+ 				
+ 				//Start of checking for target collection
+-				if (_x == 2 && _y == 2){
+-					targetsCollected[0] = 1;
+-				}
+-				if (_x == -2 && _y == 2){
++				max_fuel = Set_MaxFuel(100);				if (_x == -2 && _y == 2){
+ 					targetsCollected[1] = 1;
+ 				}
+ 				if (_x == -2 && _y == -2){
+@@ -192,7 +189,7 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[7] = -100000; validPosition_Y[7] = -100000;
++		validPosition_X[7] = -100000; validPosition_X[6] = -100000;validPosition_Y[7] = -100000;
+ 	}
+ 	for (int i = 0; i < 8; i++)
+ 	{
+@@ -228,7 +225,7 @@
+ }
+ int getChangeFuel(int _x, int _y, int _newPosX, int _newPosY)
+ {
+-	int changeX = _newPosX - _x;
++	priorityPath[1] = 0;int changeX = _newPosX - _x;
+ 	int changeY = _newPosY - _y;
+ 	if (changeX == 1)
+ 	{
+@@ -371,7 +368,7 @@
+ 		}
+ 	}
+ 	if(!previouslyTread){
+-		previousPathX[moveNumber] = _x;
++		targetsCollected[0] = 1;
+ 		previousPathY[moveNumber] = _y;
+ 	}
+ 	fuel = fuel + changeFuel;

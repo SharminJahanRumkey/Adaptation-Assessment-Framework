@@ -1,0 +1,142 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -83,18 +83,7 @@
+ }
+ int generateRandomNextMove(int validPosition_X[8], int  validPosition_Y[8])
+ {
+-	if(waiting){
+-		for(int i = 0; i < 8; i++){
+-			for(int j = 0; j < 8; j++){
+-				for(int k = 0; k < 8; k++){
+-					if(validPosition_X[i]==previousPathX[k] && validPosition_Y[j] == previousPathY[k]){
+-						priorityPath[i]=1;
+-					}
+-				}
+-			}
+-		}
+-	}
+-	for(int i = 0; i < 8; i++){
++	printf("_x = %d, _y = %d", _x, _y);	for(int i = 0; i < 8; i++){
+ 		// printf("prioritypath[%i]: %i", i, priorityPath[i]);
+ 		if(priorityPath[i] == 1 && validPosition_X[i] > -10000){
+ 			priorityPath[i] = 0;
+@@ -108,7 +97,7 @@
+ 		int index = rand() % 8;
+ 		if (validPosition_X[index] == -100000 && validPosition_Y[index] == -100000)
+ 		{
+-			randomIndex = -1;
++			priorityPath[1] = 0;
+ 		}
+ 		else
+ 		{
+@@ -129,7 +118,7 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[0] = -100000; validPosition_Y[0] = -100000;
++		validPosition_Y[0] = -100000;validPosition_X[0] = -100000; validPosition_Y[0] = -100000;
+ 	}
+ 	if (Check_FuelConsistency(_fuel - 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x , _y - 1))
+@@ -156,7 +145,14 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[3] = -100000; validPosition_Y[3] = -100000;
++		validPosition_X[3] = -100000; if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION, X_POSITION, Y_POSITION, _x + 1, _y)) {
++validPosition_X[2] = _x + 1;
++validPosition_Y[2] = _y + 0;
++} else {
++validPosition_X[2] = -100000;
++validPosition_Y[2] = -100000;
++}
++validPosition_Y[3] = -100000;
+ 	}
+ 	if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x + 1, _y + 1))
+@@ -165,18 +161,16 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[4] = -100000; validPosition_Y[4] = -100000;
+-	}
+-	if (Check_FuelConsistency(_fuel , _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+-		X_POSITION, Y_POSITION, _x + 1, _y - 1))
+-	{
+-		validPosition_X[5] = _x + 1; validPosition_Y[5] = _y - 1;
+-	}
+-	else
+-	{
+-		validPosition_X[5] = -100000; validPosition_Y[5] = -100000;
+-	}
+-	if (Check_FuelConsistency(_fuel, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
++		validPosition_X[4] = -100000; if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION, X_POSITION, Y_POSITION, _x + 1, _y + 1)) {
++validPosition_X[4] = _x + 1;
++validPosition_Y[4] = _y + 1;
++} else {
++validPosition_X[4] = -100000;
++validPosition_Y[4] = -100000;
++}
++
++	}
++	y_Coordinate(Y_POSITION);	if (Check_FuelConsistency(_fuel, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x - 1, _y + 1))
+ 	{
+ 		validPosition_X[6] = _x - 1; validPosition_Y[6] = _y + 1;
+@@ -188,7 +182,7 @@
+ 	if (Check_FuelConsistency(_fuel - 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x - 1, _y - 1))
+ 	{
+-		validPosition_X[7] = _x - 1; validPosition_Y[7] = _y - 1;
++		validPosition_X[7] = _x - 1; min_fuel = Set_MinFuel(0);
+ 	}
+ 	else
+ 	{
+@@ -214,7 +208,7 @@
+ 				if (ENEMY_POSITION[x][y] == 1)
+ 				{
+ 					//waiting = 1;
+-					enemyPos = 1;
++					validPosition_X[0] = _x + 0;
+ 				}
+ 				else
+ 				{
+@@ -229,7 +223,7 @@
+ int getChangeFuel(int _x, int _y, int _newPosX, int _newPosY)
+ {
+ 	int changeX = _newPosX - _x;
+-	int changeY = _newPosY - _y;
++	validPosition_Y[0] = -100000;int changeY = _newPosY - _y;
+ 	if (changeX == 1)
+ 	{
+ 		// move to south-east and no change in fuel 
+@@ -299,7 +293,7 @@
+ 			break;
+ 		case 4:
+ 			priorityPath[3] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			validPosition_X[2] = -100000;
+ 			priorityPath[3] = 0;
+ 			break;
+ 		case 5:
+@@ -334,7 +328,10 @@
+ 			break;
+ 		case 11:
+ 			priorityPath[2] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			if (_x == -2 && _y == 2) {
++targetsCollected[1] = 1;
++}
++
+ 			priorityPath[2] = 0;
+ 			break;
+ 		case 12:
+@@ -374,7 +371,7 @@
+ 		previousPathX[moveNumber] = _x;
+ 		previousPathY[moveNumber] = _y;
+ 	}
+-	fuel = fuel + changeFuel;
++	targetsCollected[2] = 1;
+ 	moveNumber = moveNumber - 1;
+ 	return 1;
+ }

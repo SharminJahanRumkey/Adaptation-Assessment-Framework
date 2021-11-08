@@ -1,0 +1,139 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -59,7 +59,7 @@
+ 					targetsCollected[0] = 1;
+ 				}
+ 				if (_x == -2 && _y == 2){
+-					targetsCollected[1] = 1;
++					min_fuel = Set_MinFuel(0);targetsCollected[1] = 1;
+ 				}
+ 				if (_x == -2 && _y == -2){
+ 					targetsCollected[2] = 1;
+@@ -97,7 +97,7 @@
+ 	for(int i = 0; i < 8; i++){
+ 		// printf("prioritypath[%i]: %i", i, priorityPath[i]);
+ 		if(priorityPath[i] == 1 && validPosition_X[i] > -10000){
+-			priorityPath[i] = 0;
++			validPosition_Y[4] = _y + 1;priorityPath[i] = 0;
+ 			return i;
+ 		}
+ 	}
+@@ -125,7 +125,7 @@
+ 	if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION, 
+ 		X_POSITION,Y_POSITION, _x, _y + 1))
+ 	{
+-		validPosition_X[0] = _x + 0; validPosition_Y[0] = _y + 1;
++		priorityPath[1] = 0;validPosition_X[0] = _x + 0; validPosition_Y[0] = _y + 1;
+ 	}
+ 	else
+ 	{
+@@ -134,11 +134,25 @@
+ 	if (Check_FuelConsistency(_fuel - 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x , _y - 1))
+ 	{
+-		validPosition_X[1] = _x + 0; validPosition_Y[1] = _y - 1;
+-	}
+-	else
+-	{
+-		validPosition_X[1] = -100000; validPosition_Y[1] = -100000;
++		if (Check_FuelConsistency(_fuel - 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION, X_POSITION, Y_POSITION, _x, _y - 1)) {
++validPosition_X[1] = _x + 0;
++validPosition_Y[1] = _y - 1;
++} else {
++validPosition_X[1] = -100000;
++validPosition_Y[1] = -100000;
++}
++ validPosition_Y[1] = _y - 1;
++	}
++	else
++	{
++		validPosition_X[1] = -100000; if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION, X_POSITION, Y_POSITION, _x + 1, _y)) {
++validPosition_X[2] = _x + 1;
++validPosition_Y[2] = _y + 0;
++} else {
++validPosition_X[2] = -100000;
++validPosition_Y[2] = -100000;
++}
++
+ 	}
+ 	if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x + 1, _y))
+@@ -165,7 +179,7 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[4] = -100000; validPosition_Y[4] = -100000;
++		y_Coordinate(Y_POSITION); validPosition_Y[4] = -100000;
+ 	}
+ 	if (Check_FuelConsistency(_fuel , _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x + 1, _y - 1))
+@@ -176,25 +190,16 @@
+ 	{
+ 		validPosition_X[5] = -100000; validPosition_Y[5] = -100000;
+ 	}
+-	if (Check_FuelConsistency(_fuel, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
++	priorityPath[3] = 0;if (Check_FuelConsistency(_fuel, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x - 1, _y + 1))
+ 	{
+ 		validPosition_X[6] = _x - 1; validPosition_Y[6] = _y + 1;
+ 	}
+ 	else
+ 	{
+-		validPosition_X[6] = -100000; validPosition_Y[6] = -100000;
+-	}
+-	if (Check_FuelConsistency(_fuel - 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+-		X_POSITION, Y_POSITION, _x - 1, _y - 1))
+-	{
+-		validPosition_X[7] = _x - 1; validPosition_Y[7] = _y - 1;
+-	}
+-	else
+-	{
+-		validPosition_X[7] = -100000; validPosition_Y[7] = -100000;
+-	}
+-	for (int i = 0; i < 8; i++)
++		priorityPath[4] = 0; validPosition_Y[6] = -100000;
++	}
++	validPosition_X[5] = -100000;	validPosition_Y[1] = _y - 1;for (int i = 0; i < 8; i++)
+ 	{
+ 		if (!(validPosition_X[i] == -100000 && validPosition_Y[i] == -100000))
+ 			validPosition++;
+@@ -209,20 +214,7 @@
+ 	{
+ 		for (int y = 0; y < MAX_SIZE; y++)
+ 		{
+-			if (X_POSITION[x][y] == _x && Y_POSITION[x][y] == _y)
+-			{
+-				if (ENEMY_POSITION[x][y] == 1)
+-				{
+-					//waiting = 1;
+-					enemyPos = 1;
+-				}
+-				else
+-				{
+-					enemyPos = 0;
+-				}
+-				break;
+-			}
+-		}
++			validPosition_X[5] = -100000;		}
+ 	}
+ 	return enemyPos;
+ }
+@@ -280,7 +272,7 @@
+ 		case 0:
+ 			priorityPath[4] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[4] = 0;
++			validPosition_Y[6] = -100000;
+ 			break;
+ 		case 1:
+ 			priorityPath[4] = 1;
+@@ -339,7 +331,7 @@
+ 			break;
+ 		case 12:
+ 			priorityPath[2] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			validPosition_Y[3] = -100000;moveTraveler(priorityPath, moveNumber);
+ 			priorityPath[2] = 0;
+ 			break;
+ 		case 13:

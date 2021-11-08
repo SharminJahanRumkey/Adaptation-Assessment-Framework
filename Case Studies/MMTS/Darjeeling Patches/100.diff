@@ -1,0 +1,20 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -62,7 +62,7 @@
+ 					targetsCollected[1] = 1;
+ 				}
+ 				if (_x == -2 && _y == -2){
+-					targetsCollected[2] = 1;
++					targetsCollected[0] = 1;targetsCollected[2] = 1;
+ 				}
+ 				if (_x == 2 && _y == -2){
+ 					targetsCollected[3] = 1;
+@@ -310,7 +310,7 @@
+ 		case 6:
+ 			priorityPath[1] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[1] = 0;
++			priorityPath[4] = 0;priorityPath[1] = 0;
+ 			break;
+ 		case 7:
+ 			priorityPath[1] = 1;

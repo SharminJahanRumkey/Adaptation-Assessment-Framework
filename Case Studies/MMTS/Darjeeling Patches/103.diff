@@ -1,0 +1,83 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -156,7 +156,7 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[3] = -100000; validPosition_Y[3] = -100000;
++		y_Coordinate(Y_POSITION);validPosition_X[3] = -100000; validPosition_Y[3] = -100000;
+ 	}
+ 	if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x + 1, _y + 1))
+@@ -165,7 +165,7 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[4] = -100000; validPosition_Y[4] = -100000;
++		priorityPath[4] = 0; validPosition_Y[4] = -100000;
+ 	}
+ 	if (Check_FuelConsistency(_fuel , _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x + 1, _y - 1))
+@@ -185,16 +185,7 @@
+ 	{
+ 		validPosition_X[6] = -100000; validPosition_Y[6] = -100000;
+ 	}
+-	if (Check_FuelConsistency(_fuel - 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+-		X_POSITION, Y_POSITION, _x - 1, _y - 1))
+-	{
+-		validPosition_X[7] = _x - 1; validPosition_Y[7] = _y - 1;
+-	}
+-	else
+-	{
+-		validPosition_X[7] = -100000; validPosition_Y[7] = -100000;
+-	}
+-	for (int i = 0; i < 8; i++)
++	validPosition_X[5] = -100000;	validPosition_X[6] = _x - 1;for (int i = 0; i < 8; i++)
+ 	{
+ 		if (!(validPosition_X[i] == -100000 && validPosition_Y[i] == -100000))
+ 			validPosition++;
+@@ -214,7 +205,7 @@
+ 				if (ENEMY_POSITION[x][y] == 1)
+ 				{
+ 					//waiting = 1;
+-					enemyPos = 1;
++					validPosition_X[0] = _x + 0;
+ 				}
+ 				else
+ 				{
+@@ -259,7 +250,7 @@
+ 	else if (changeX == -1)
+ 	{
+ 		// move to north-west and no change in fuel 
+-		if (changeY == 1)
++		validPosition_X[6] = _x - 1;if (changeY == 1)
+ 		{
+ 			return 0;
+ 		}
+@@ -329,7 +320,10 @@
+ 			break;
+ 		case 10:
+ 			priorityPath[2] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			if (_x == 2 && _y == -2) {
++targetsCollected[3] = 1;
++}
++
+ 			priorityPath[2] = 0;
+ 			break;
+ 		case 11:
+@@ -340,12 +334,12 @@
+ 		case 12:
+ 			priorityPath[2] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[2] = 0;
++			targetsCollected[3] = 1;
+ 			break;
+ 		case 13:
+ 			priorityPath[2] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[2] = 0;
++			targetsCollected[0] = 1;
+ 			break;
+ 		default:
+ 			moveTraveler(priorityPath, moveNumber);

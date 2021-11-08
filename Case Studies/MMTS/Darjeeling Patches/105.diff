@@ -1,0 +1,26 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -28,7 +28,7 @@
+ 	_y = Set_PositionY(y);
+ 	enemy_Position(ENEMY_POSITION,manualEnemySet);
+ 	x_Coordinate(X_POSITION);
+-	y_Coordinate(Y_POSITION);
++	enemy_Position(ENEMY_POSITION, manualEnemySet);
+ 	printf("x = %d, y = %d", x, y);
+ 	printf("_x = %d, _y = %d", _x, _y);
+ }
+@@ -300,12 +300,12 @@
+ 		case 4:
+ 			priorityPath[3] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[3] = 0;
++			min_fuel = Set_MinFuel(0);priorityPath[3] = 0;
+ 			break;
+ 		case 5:
+ 			priorityPath[3] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[3] = 0;
++			validPosition_X[7] = _x - 1;
+ 			break;
+ 		case 6:
+ 			priorityPath[1] = 1;
