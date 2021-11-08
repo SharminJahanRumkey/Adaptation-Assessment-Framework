@@ -1,0 +1,36 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -28,7 +28,7 @@
+ 	_y = Set_PositionY(y);
+ 	enemy_Position(ENEMY_POSITION,manualEnemySet);
+ 	x_Coordinate(X_POSITION);
+-	y_Coordinate(Y_POSITION);
++	enemy_Position(ENEMY_POSITION, manualEnemySet);
+ 	printf("x = %d, y = %d", x, y);
+ 	printf("_x = %d, _y = %d", _x, _y);
+ }
+@@ -156,7 +156,14 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[3] = -100000; validPosition_Y[3] = -100000;
++		if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION, X_POSITION, Y_POSITION, _x + 1, _y + 1)) {
++validPosition_X[4] = _x + 1;
++validPosition_Y[4] = _y + 1;
++} else {
++validPosition_X[4] = -100000;
++validPosition_Y[4] = -100000;
++}
++ validPosition_Y[3] = -100000;
+ 	}
+ 	if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x + 1, _y + 1))
+@@ -319,7 +326,7 @@
+ 			break;
+ 		case 8:
+ 			priorityPath[1] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			targetsCollected[2] = 1;
+ 			priorityPath[1] = 0;
+ 			break;
+ 		case 9:

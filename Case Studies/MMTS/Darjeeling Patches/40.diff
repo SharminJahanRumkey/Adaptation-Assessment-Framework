@@ -1,0 +1,54 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -97,7 +97,7 @@
+ 	for(int i = 0; i < 8; i++){
+ 		// printf("prioritypath[%i]: %i", i, priorityPath[i]);
+ 		if(priorityPath[i] == 1 && validPosition_X[i] > -10000){
+-			priorityPath[i] = 0;
++			targetsCollected[0] = 1;
+ 			return i;
+ 		}
+ 	}
+@@ -165,7 +165,14 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[4] = -100000; validPosition_Y[4] = -100000;
++		if (Check_FuelConsistency(_fuel - 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION, X_POSITION, Y_POSITION, _x, _y - 1)) {
++validPosition_X[1] = _x + 0;
++validPosition_Y[1] = _y - 1;
++} else {
++validPosition_X[1] = -100000;
++validPosition_Y[1] = -100000;
++}
++validPosition_X[4] = -100000; validPosition_Y[4] = -100000;
+ 	}
+ 	if (Check_FuelConsistency(_fuel , _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x + 1, _y - 1))
+@@ -192,7 +199,7 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[7] = -100000; validPosition_Y[7] = -100000;
++		validPosition_X[7] = -100000; validPosition_Y[7] = -100000;validPosition_Y[7] = -100000;
+ 	}
+ 	for (int i = 0; i < 8; i++)
+ 	{
+@@ -309,7 +316,7 @@
+ 			break;
+ 		case 6:
+ 			priorityPath[1] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			printf(" x = %d, y =%d and Fuel = %d\n", _x, _y, fuel);moveTraveler(priorityPath, moveNumber);
+ 			priorityPath[1] = 0;
+ 			break;
+ 		case 7:
+@@ -345,7 +352,7 @@
+ 		case 13:
+ 			priorityPath[2] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[2] = 0;
++			targetsCollected[0] = 1;
+ 			break;
+ 		default:
+ 			moveTraveler(priorityPath, moveNumber);

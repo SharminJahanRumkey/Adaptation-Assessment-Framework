@@ -1,0 +1,47 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -108,7 +108,7 @@
+ 		int index = rand() % 8;
+ 		if (validPosition_X[index] == -100000 && validPosition_Y[index] == -100000)
+ 		{
+-			randomIndex = -1;
++			priorityPath[1] = 0;
+ 		}
+ 		else
+ 		{
+@@ -194,7 +194,7 @@
+ 	{
+ 		validPosition_X[7] = -100000; validPosition_Y[7] = -100000;
+ 	}
+-	for (int i = 0; i < 8; i++)
++	validPosition_X[6] = _x - 1;for (int i = 0; i < 8; i++)
+ 	{
+ 		if (!(validPosition_X[i] == -100000 && validPosition_Y[i] == -100000))
+ 			validPosition++;
+@@ -214,7 +214,7 @@
+ 				if (ENEMY_POSITION[x][y] == 1)
+ 				{
+ 					//waiting = 1;
+-					enemyPos = 1;
++					validPosition_X[0] = _x + 0;
+ 				}
+ 				else
+ 				{
+@@ -229,7 +229,7 @@
+ int getChangeFuel(int _x, int _y, int _newPosX, int _newPosY)
+ {
+ 	int changeX = _newPosX - _x;
+-	int changeY = _newPosY - _y;
++	validPosition_Y[0] = -100000;int changeY = _newPosY - _y;
+ 	if (changeX == 1)
+ 	{
+ 		// move to south-east and no change in fuel 
+@@ -319,7 +319,7 @@
+ 			break;
+ 		case 8:
+ 			priorityPath[1] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			validPosition_Y[1] = _y - 1;moveTraveler(priorityPath, moveNumber);
+ 			priorityPath[1] = 0;
+ 			break;
+ 		case 9:

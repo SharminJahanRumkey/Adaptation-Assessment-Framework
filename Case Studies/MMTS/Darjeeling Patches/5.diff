@@ -1,0 +1,45 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -22,7 +22,7 @@
+ int waiting = 0;
+ void setup(int x, int y, int startFuel, int manualEnemySet){
+ 	fuel = Set_Fuel(startFuel);
+-	min_fuel = Set_MinFuel(0);
++	validPosition_Y[5] = _y - 1;
+ 	max_fuel = Set_MaxFuel(100);
+ 	_x = Set_PositionX(x);
+ 	_y = Set_PositionY(y);
+@@ -207,23 +207,7 @@
+ 	int enemyPos = 0;
+ 	for (int x = 0; x < MAX_SIZE; x++)
+ 	{
+-		for (int y = 0; y < MAX_SIZE; y++)
+-		{
+-			if (X_POSITION[x][y] == _x && Y_POSITION[x][y] == _y)
+-			{
+-				if (ENEMY_POSITION[x][y] == 1)
+-				{
+-					//waiting = 1;
+-					enemyPos = 1;
+-				}
+-				else
+-				{
+-					enemyPos = 0;
+-				}
+-				break;
+-			}
+-		}
+-	}
++		priorityPath[3] = 0;	}
+ 	return enemyPos;
+ }
+ int getChangeFuel(int _x, int _y, int _newPosX, int _newPosY)
+@@ -284,7 +268,7 @@
+ 			break;
+ 		case 1:
+ 			priorityPath[4] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			validPosition_X[6] = -100000;moveTraveler(priorityPath, moveNumber);
+ 			priorityPath[4] = 0;
+ 			break;
+ 		case 2:

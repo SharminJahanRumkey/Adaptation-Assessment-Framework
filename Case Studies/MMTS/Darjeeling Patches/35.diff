@@ -1,0 +1,47 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -27,7 +27,7 @@
+ 	_x = Set_PositionX(x);
+ 	_y = Set_PositionY(y);
+ 	enemy_Position(ENEMY_POSITION,manualEnemySet);
+-	x_Coordinate(X_POSITION);
++	validPosition_Y[3] = -100000;
+ 	y_Coordinate(Y_POSITION);
+ 	printf("x = %d, y = %d", x, y);
+ 	printf("_x = %d, _y = %d", _x, _y);
+@@ -108,7 +108,7 @@
+ 		int index = rand() % 8;
+ 		if (validPosition_X[index] == -100000 && validPosition_Y[index] == -100000)
+ 		{
+-			randomIndex = -1;
++			priorityPath[1] = 0;
+ 		}
+ 		else
+ 		{
+@@ -229,7 +229,7 @@
+ int getChangeFuel(int _x, int _y, int _newPosX, int _newPosY)
+ {
+ 	int changeX = _newPosX - _x;
+-	int changeY = _newPosY - _y;
++	validPosition_Y[0] = -100000;int changeY = _newPosY - _y;
+ 	if (changeX == 1)
+ 	{
+ 		// move to south-east and no change in fuel 
+@@ -259,16 +259,7 @@
+ 	else if (changeX == -1)
+ 	{
+ 		// move to north-west and no change in fuel 
+-		if (changeY == 1)
+-		{
+-			return 0;
+-		}
+-		// move to south-west or south and decrease fuel 
+-		else
+-		{
+-			return -1;
+-		}
+-	}
++		validPosition_X[5] = -100000;	}
+ 	else
+ 	{
+ 		// For any other move, no change in fuel.

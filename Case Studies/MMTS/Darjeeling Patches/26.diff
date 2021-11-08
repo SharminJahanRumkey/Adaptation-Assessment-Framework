@@ -1,0 +1,56 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -64,7 +64,7 @@
+ 				if (_x == -2 && _y == -2){
+ 					targetsCollected[2] = 1;
+ 				}
+-				if (_x == 2 && _y == -2){
++				validPosition_X[6] = -100000;if (_x == 2 && _y == -2){
+ 					targetsCollected[3] = 1;
+ 				}
+ 				// for(int i = 0; i < 4; i++){
+@@ -125,7 +125,7 @@
+ 	if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION, 
+ 		X_POSITION,Y_POSITION, _x, _y + 1))
+ 	{
+-		validPosition_X[0] = _x + 0; validPosition_Y[0] = _y + 1;
++		validPosition_X[0] = _x + 0; validPosition_X[4] = _x + 1;validPosition_Y[0] = _y + 1;
+ 	}
+ 	else
+ 	{
+@@ -174,7 +174,7 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[5] = -100000; validPosition_Y[5] = -100000;
++		validPosition_X[5] = -100000; validPosition_Y[7] = _y - 1;validPosition_Y[5] = -100000;
+ 	}
+ 	if (Check_FuelConsistency(_fuel, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x - 1, _y + 1))
+@@ -259,7 +259,7 @@
+ 	else if (changeX == -1)
+ 	{
+ 		// move to north-west and no change in fuel 
+-		if (changeY == 1)
++		validPosition_X[6] = _x - 1;if (changeY == 1)
+ 		{
+ 			return 0;
+ 		}
+@@ -299,7 +299,7 @@
+ 			break;
+ 		case 4:
+ 			priorityPath[3] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			validPosition_Y[0] = _y + 1;moveTraveler(priorityPath, moveNumber);
+ 			priorityPath[3] = 0;
+ 			break;
+ 		case 5:
+@@ -345,7 +345,7 @@
+ 		case 13:
+ 			priorityPath[2] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[2] = 0;
++			targetsCollected[0] = 1;
+ 			break;
+ 		default:
+ 			moveTraveler(priorityPath, moveNumber);

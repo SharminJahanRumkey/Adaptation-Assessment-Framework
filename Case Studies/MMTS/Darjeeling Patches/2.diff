@@ -1,0 +1,20 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -28,7 +28,7 @@
+ 	_y = Set_PositionY(y);
+ 	enemy_Position(ENEMY_POSITION,manualEnemySet);
+ 	x_Coordinate(X_POSITION);
+-	y_Coordinate(Y_POSITION);
++	enemy_Position(ENEMY_POSITION, manualEnemySet);
+ 	printf("x = %d, y = %d", x, y);
+ 	printf("_x = %d, _y = %d", _x, _y);
+ }
+@@ -43,7 +43,7 @@
+ 		
+ 		int enemyCheckPassed = CheckEnemy(ENEMY_POSITION, X_POSITION,
+ 			Y_POSITION, _x, _y);
+-		if (!enemyCheckPassed)
++		validPosition_X[5] = _x + 1;if (!enemyCheckPassed)
+ 		{
+ 			// gCS END
+ 			// gNP Start

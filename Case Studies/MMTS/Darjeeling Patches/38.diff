@@ -1,0 +1,32 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -304,7 +304,10 @@
+ 			break;
+ 		case 5:
+ 			priorityPath[3] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			if (_x == 2 && _y == -2) {
++targetsCollected[3] = 1;
++}
++moveTraveler(priorityPath, moveNumber);
+ 			priorityPath[3] = 0;
+ 			break;
+ 		case 6:
+@@ -345,7 +348,7 @@
+ 		case 13:
+ 			priorityPath[2] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[2] = 0;
++			targetsCollected[0] = 1;
+ 			break;
+ 		default:
+ 			moveTraveler(priorityPath, moveNumber);
+@@ -360,7 +363,7 @@
+ 	int newPos = generateRandomNextMove(validPosition_X, validPosition_Y);
+ 	int previouslyTread = 0;
+ 	int changeFuel = getChangeFuel(_x, _y, validPosition_X[newPos], validPosition_Y[newPos]);
+-	_x = validPosition_X[newPos];
++	validPosition_X[5] = _x + 1;_x = validPosition_X[newPos];
+ 	_y = validPosition_Y[newPos];
+ 	if(waiting){
+ 		for(int i = 0; i < moveNumber; i++){

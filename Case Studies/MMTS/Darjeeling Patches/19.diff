@@ -1,0 +1,29 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -192,7 +192,7 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[7] = -100000; validPosition_Y[7] = -100000;
++		validPosition_X[7] = -100000; validPosition_Y[7] = -100000;validPosition_Y[7] = -100000;
+ 	}
+ 	for (int i = 0; i < 8; i++)
+ 	{
+@@ -345,7 +345,7 @@
+ 		case 13:
+ 			priorityPath[2] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[2] = 0;
++			targetsCollected[0] = 1;
+ 			break;
+ 		default:
+ 			moveTraveler(priorityPath, moveNumber);
+@@ -361,7 +361,7 @@
+ 	int previouslyTread = 0;
+ 	int changeFuel = getChangeFuel(_x, _y, validPosition_X[newPos], validPosition_Y[newPos]);
+ 	_x = validPosition_X[newPos];
+-	_y = validPosition_Y[newPos];
++	validPosition_X[0] = -100000;_y = validPosition_Y[newPos];
+ 	if(waiting){
+ 		for(int i = 0; i < moveNumber; i++){
+ 			if(previousPathX[i] == _x && previousPathY[i] == _y){

@@ -1,0 +1,62 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -36,7 +36,7 @@
+ {	
+ 	int proceed = 0;
+ 	int fuelCheckPassed = Check_FuelConsistency(fuel, min_fuel, max_fuel);
+-	printf(" x = %d, y =%d and Fuel = %d\n", _x, _y, fuel);
++	printf("_x = %d, _y = %d", _x, _y);
+ 	// gCS start
+ 	if (fuelCheckPassed)
+ 	{
+@@ -58,7 +58,7 @@
+ 				if (_x == 2 && _y == 2){
+ 					targetsCollected[0] = 1;
+ 				}
+-				if (_x == -2 && _y == 2){
++				validPosition_Y[5] = -100000;if (_x == -2 && _y == 2){
+ 					targetsCollected[1] = 1;
+ 				}
+ 				if (_x == -2 && _y == -2){
+@@ -97,7 +97,7 @@
+ 	for(int i = 0; i < 8; i++){
+ 		// printf("prioritypath[%i]: %i", i, priorityPath[i]);
+ 		if(priorityPath[i] == 1 && validPosition_X[i] > -10000){
+-			priorityPath[i] = 0;
++			targetsCollected[0] = 1;
+ 			return i;
+ 		}
+ 	}
+@@ -192,7 +192,7 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[7] = -100000; validPosition_Y[7] = -100000;
++		validPosition_X[7] = -100000; validPosition_Y[7] = -100000;validPosition_Y[7] = -100000;
+ 	}
+ 	for (int i = 0; i < 8; i++)
+ 	{
+@@ -309,12 +309,12 @@
+ 			break;
+ 		case 6:
+ 			priorityPath[1] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			printf(" x = %d, y =%d and Fuel = %d\n", _x, _y, fuel);moveTraveler(priorityPath, moveNumber);
+ 			priorityPath[1] = 0;
+ 			break;
+ 		case 7:
+ 			priorityPath[1] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			validPosition_X[4] = _x + 1;
+ 			priorityPath[1] = 0;
+ 			break;
+ 		case 8:
+@@ -345,7 +345,7 @@
+ 		case 13:
+ 			priorityPath[2] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[2] = 0;
++			targetsCollected[0] = 1;
+ 			break;
+ 		default:
+ 			moveTraveler(priorityPath, moveNumber);

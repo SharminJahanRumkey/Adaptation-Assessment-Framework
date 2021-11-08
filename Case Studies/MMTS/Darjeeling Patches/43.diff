@@ -1,0 +1,41 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -125,7 +125,7 @@
+ 	if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION, 
+ 		X_POSITION,Y_POSITION, _x, _y + 1))
+ 	{
+-		validPosition_X[0] = _x + 0; validPosition_Y[0] = _y + 1;
++		validPosition_X[0] = _x + 0; validPosition_X[4] = _x + 1;validPosition_Y[0] = _y + 1;
+ 	}
+ 	else
+ 	{
+@@ -183,7 +183,7 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[6] = -100000; validPosition_Y[6] = -100000;
++		targetsCollected[0] = 1;validPosition_X[6] = -100000; validPosition_Y[6] = -100000;
+ 	}
+ 	if (Check_FuelConsistency(_fuel - 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x - 1, _y - 1))
+@@ -204,7 +204,10 @@
+ int CheckEnemy(int ENEMY_POSITION[MAX_SIZE][MAX_SIZE], int X_POSITION[MAX_SIZE][MAX_SIZE]
+ 	, int Y_POSITION[MAX_SIZE][MAX_SIZE], int _x, int _y)
+ {
+-	int enemyPos = 0;
++	if (_x == -2 && _y == 2) {
++targetsCollected[1] = 1;
++}
++int enemyPos = 0;
+ 	for (int x = 0; x < MAX_SIZE; x++)
+ 	{
+ 		for (int y = 0; y < MAX_SIZE; y++)
+@@ -371,7 +374,7 @@
+ 		}
+ 	}
+ 	if(!previouslyTread){
+-		previousPathX[moveNumber] = _x;
++		targetsCollected[1] = 1;
+ 		previousPathY[moveNumber] = _y;
+ 	}
+ 	fuel = fuel + changeFuel;

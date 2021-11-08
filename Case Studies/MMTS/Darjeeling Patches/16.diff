@@ -1,0 +1,29 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -64,7 +64,7 @@
+ 				if (_x == -2 && _y == -2){
+ 					targetsCollected[2] = 1;
+ 				}
+-				if (_x == 2 && _y == -2){
++				validPosition_X[6] = -100000;if (_x == 2 && _y == -2){
+ 					targetsCollected[3] = 1;
+ 				}
+ 				// for(int i = 0; i < 4; i++){
+@@ -125,7 +125,7 @@
+ 	if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION, 
+ 		X_POSITION,Y_POSITION, _x, _y + 1))
+ 	{
+-		validPosition_X[0] = _x + 0; validPosition_Y[0] = _y + 1;
++		validPosition_X[0] = _x + 0; validPosition_X[4] = _x + 1;validPosition_Y[0] = _y + 1;
+ 	}
+ 	else
+ 	{
+@@ -183,7 +183,7 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[6] = -100000; validPosition_Y[6] = -100000;
++		targetsCollected[0] = 1;validPosition_X[6] = -100000; validPosition_Y[6] = -100000;
+ 	}
+ 	if (Check_FuelConsistency(_fuel - 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x - 1, _y - 1))

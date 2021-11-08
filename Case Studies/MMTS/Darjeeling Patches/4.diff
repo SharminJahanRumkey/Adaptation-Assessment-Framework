@@ -1,0 +1,43 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -183,7 +183,14 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[6] = -100000; validPosition_Y[6] = -100000;
++		validPosition_X[6] = -100000; if (Check_FuelConsistency(_fuel - 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION, X_POSITION, Y_POSITION, _x - 1, _y)) {
++validPosition_X[3] = _x - 1;
++validPosition_Y[3] = _y + 0;
++} else {
++validPosition_X[3] = -100000;
++validPosition_Y[3] = -100000;
++}
++validPosition_Y[6] = -100000;
+ 	}
+ 	if (Check_FuelConsistency(_fuel - 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x - 1, _y - 1))
+@@ -207,23 +214,7 @@
+ 	int enemyPos = 0;
+ 	for (int x = 0; x < MAX_SIZE; x++)
+ 	{
+-		for (int y = 0; y < MAX_SIZE; y++)
+-		{
+-			if (X_POSITION[x][y] == _x && Y_POSITION[x][y] == _y)
+-			{
+-				if (ENEMY_POSITION[x][y] == 1)
+-				{
+-					//waiting = 1;
+-					enemyPos = 1;
+-				}
+-				else
+-				{
+-					enemyPos = 0;
+-				}
+-				break;
+-			}
+-		}
+-	}
++		priorityPath[3] = 0;	}
+ 	return enemyPos;
+ }
+ int getChangeFuel(int _x, int _y, int _newPosX, int _newPosY)

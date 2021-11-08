@@ -1,0 +1,38 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -43,7 +43,7 @@
+ 		
+ 		int enemyCheckPassed = CheckEnemy(ENEMY_POSITION, X_POSITION,
+ 			Y_POSITION, _x, _y);
+-		if (!enemyCheckPassed)
++		validPosition_X[5] = _x + 1;if (!enemyCheckPassed)
+ 		{
+ 			// gCS END
+ 			// gNP Start
+@@ -140,7 +140,7 @@
+ 	{
+ 		validPosition_X[1] = -100000; validPosition_Y[1] = -100000;
+ 	}
+-	if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
++	targetsCollected[2] = 1;if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x + 1, _y))
+ 	{
+ 		validPosition_X[2] = _x + 1; validPosition_Y[2] = _y + 0;
+@@ -211,16 +211,7 @@
+ 		{
+ 			if (X_POSITION[x][y] == _x && Y_POSITION[x][y] == _y)
+ 			{
+-				if (ENEMY_POSITION[x][y] == 1)
+-				{
+-					//waiting = 1;
+-					enemyPos = 1;
+-				}
+-				else
+-				{
+-					enemyPos = 0;
+-				}
+-				break;
++				printf(" x = %d, y =%d and Fuel = %d\n", _x, _y, fuel);				break;
+ 			}
+ 		}
+ 	}

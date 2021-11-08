@@ -1,0 +1,38 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -35,7 +35,7 @@
+ int update(int caseId)
+ {	
+ 	int proceed = 0;
+-	int fuelCheckPassed = Check_FuelConsistency(fuel, min_fuel, max_fuel);
++	validPosition_Y[5] = -100000;int fuelCheckPassed = Check_FuelConsistency(fuel, min_fuel, max_fuel);
+ 	printf(" x = %d, y =%d and Fuel = %d\n", _x, _y, fuel);
+ 	// gCS start
+ 	if (fuelCheckPassed)
+@@ -259,7 +259,7 @@
+ 	else if (changeX == -1)
+ 	{
+ 		// move to north-west and no change in fuel 
+-		if (changeY == 1)
++		validPosition_X[6] = _x - 1;if (changeY == 1)
+ 		{
+ 			return 0;
+ 		}
+@@ -290,7 +290,7 @@
+ 		case 2:
+ 			priorityPath[3] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[3] = 0;
++			validPosition_Y[1] = -100000;priorityPath[3] = 0;
+ 			break;
+ 		case 3:
+ 			priorityPath[3] = 1;
+@@ -345,7 +345,7 @@
+ 		case 13:
+ 			priorityPath[2] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[2] = 0;
++			targetsCollected[0] = 1;
+ 			break;
+ 		default:
+ 			moveTraveler(priorityPath, moveNumber);

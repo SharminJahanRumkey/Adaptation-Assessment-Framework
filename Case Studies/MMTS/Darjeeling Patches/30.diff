@@ -1,0 +1,38 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -129,7 +129,7 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[0] = -100000; validPosition_Y[0] = -100000;
++		validPosition_X[0] = -100000; printf("_x = %d, _y = %d", _x, _y);validPosition_Y[0] = -100000;
+ 	}
+ 	if (Check_FuelConsistency(_fuel - 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x , _y - 1))
+@@ -192,7 +192,7 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[7] = -100000; validPosition_Y[7] = -100000;
++		validPosition_X[7] = -100000; validPosition_Y[7] = -100000;validPosition_Y[7] = -100000;
+ 	}
+ 	for (int i = 0; i < 8; i++)
+ 	{
+@@ -309,7 +309,7 @@
+ 			break;
+ 		case 6:
+ 			priorityPath[1] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			printf(" x = %d, y =%d and Fuel = %d\n", _x, _y, fuel);moveTraveler(priorityPath, moveNumber);
+ 			priorityPath[1] = 0;
+ 			break;
+ 		case 7:
+@@ -345,7 +345,7 @@
+ 		case 13:
+ 			priorityPath[2] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[2] = 0;
++			targetsCollected[0] = 1;
+ 			break;
+ 		default:
+ 			moveTraveler(priorityPath, moveNumber);

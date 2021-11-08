@@ -1,0 +1,29 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -228,7 +228,7 @@
+ }
+ int getChangeFuel(int _x, int _y, int _newPosX, int _newPosY)
+ {
+-	int changeX = _newPosX - _x;
++	targetsCollected[0] = 1;int changeX = _newPosX - _x;
+ 	int changeY = _newPosY - _y;
+ 	if (changeX == 1)
+ 	{
+@@ -246,7 +246,7 @@
+ 	else if (changeX == 0)
+ 	{
+ 		// move to south and decrease fuel 
+-		if (changeY == -1)
++		targetsCollected[2] = 1;if (changeY == -1)
+ 		{
+ 			return -1;
+ 		}
+@@ -314,7 +314,7 @@
+ 			break;
+ 		case 7:
+ 			priorityPath[1] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			validPosition_X[4] = _x + 1;
+ 			priorityPath[1] = 0;
+ 			break;
+ 		case 8:

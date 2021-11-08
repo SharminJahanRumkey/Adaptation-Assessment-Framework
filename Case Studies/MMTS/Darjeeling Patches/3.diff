@@ -1,0 +1,40 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -83,18 +83,7 @@
+ }
+ int generateRandomNextMove(int validPosition_X[8], int  validPosition_Y[8])
+ {
+-	if(waiting){
+-		for(int i = 0; i < 8; i++){
+-			for(int j = 0; j < 8; j++){
+-				for(int k = 0; k < 8; k++){
+-					if(validPosition_X[i]==previousPathX[k] && validPosition_Y[j] == previousPathY[k]){
+-						priorityPath[i]=1;
+-					}
+-				}
+-			}
+-		}
+-	}
+-	for(int i = 0; i < 8; i++){
++	printf("_x = %d, _y = %d", _x, _y);	for(int i = 0; i < 8; i++){
+ 		// printf("prioritypath[%i]: %i", i, priorityPath[i]);
+ 		if(priorityPath[i] == 1 && validPosition_X[i] > -10000){
+ 			priorityPath[i] = 0;
+@@ -192,7 +181,7 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[7] = -100000; validPosition_Y[7] = -100000;
++		targetsCollected[0] = 1;validPosition_X[7] = -100000; validPosition_Y[7] = -100000;
+ 	}
+ 	for (int i = 0; i < 8; i++)
+ 	{
+@@ -300,7 +289,7 @@
+ 		case 4:
+ 			priorityPath[3] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[3] = 0;
++			validPosition_X[3] = -100000;
+ 			break;
+ 		case 5:
+ 			priorityPath[3] = 1;

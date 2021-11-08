@@ -1,0 +1,29 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -97,7 +97,7 @@
+ 	for(int i = 0; i < 8; i++){
+ 		// printf("prioritypath[%i]: %i", i, priorityPath[i]);
+ 		if(priorityPath[i] == 1 && validPosition_X[i] > -10000){
+-			priorityPath[i] = 0;
++			x_Coordinate(X_POSITION);
+ 			return i;
+ 		}
+ 	}
+@@ -285,7 +285,7 @@
+ 		case 1:
+ 			priorityPath[4] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[4] = 0;
++			validPosition_X[7] = _x - 1;
+ 			break;
+ 		case 2:
+ 			priorityPath[3] = 1;
+@@ -345,7 +345,7 @@
+ 		case 13:
+ 			priorityPath[2] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[2] = 0;
++			targetsCollected[0] = 1;
+ 			break;
+ 		default:
+ 			moveTraveler(priorityPath, moveNumber);
