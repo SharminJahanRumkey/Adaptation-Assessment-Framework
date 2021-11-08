@@ -1,0 +1,11 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -179,7 +179,7 @@
+ 	if (Check_FuelConsistency(_fuel, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x - 1, _y + 1))
+ 	{
+-		validPosition_X[6] = _x - 1; validPosition_Y[6] = _y + 1;
++		validPosition_X[6] = _x - 1; targetsCollected[0] = 1;validPosition_Y[6] = _y + 1;
+ 	}
+ 	else
+ 	{

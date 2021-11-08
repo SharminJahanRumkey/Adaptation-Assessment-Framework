@@ -1,0 +1,80 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -28,7 +28,7 @@
+ 	_y = Set_PositionY(y);
+ 	enemy_Position(ENEMY_POSITION,manualEnemySet);
+ 	x_Coordinate(X_POSITION);
+-	y_Coordinate(Y_POSITION);
++	enemy_Position(ENEMY_POSITION, manualEnemySet);
+ 	printf("x = %d, y = %d", x, y);
+ 	printf("_x = %d, _y = %d", _x, _y);
+ }
+@@ -335,7 +335,67 @@
+ 		case 11:
+ 			priorityPath[2] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[2] = 0;
++			switch (moveNumber) {
++case 0:
++priorityPath[4] = 1;
++moveTraveler(priorityPath, moveNumber);
++priorityPath[4] = 0;
++break;case 1:
++priorityPath[4] = 1;
++moveTraveler(priorityPath, moveNumber);
++priorityPath[4] = 0;
++break;case 2:
++priorityPath[3] = 1;
++moveTraveler(priorityPath, moveNumber);
++priorityPath[3] = 0;
++break;case 3:
++priorityPath[3] = 1;
++moveTraveler(priorityPath, moveNumber);
++priorityPath[3] = 0;
++break;case 4:
++priorityPath[3] = 1;
++moveTraveler(priorityPath, moveNumber);
++priorityPath[3] = 0;
++break;case 5:
++priorityPath[3] = 1;
++moveTraveler(priorityPath, moveNumber);
++priorityPath[3] = 0;
++break;case 6:
++priorityPath[1] = 1;
++moveTraveler(priorityPath, moveNumber);
++priorityPath[1] = 0;
++break;case 7:
++priorityPath[1] = 1;
++moveTraveler(priorityPath, moveNumber);
++priorityPath[1] = 0;
++break;case 8:
++priorityPath[1] = 1;
++moveTraveler(priorityPath, moveNumber);
++priorityPath[1] = 0;
++break;case 9:
++priorityPath[1] = 1;
++moveTraveler(priorityPath, moveNumber);
++priorityPath[1] = 0;
++break;case 10:
++priorityPath[2] = 1;
++moveTraveler(priorityPath, moveNumber);
++priorityPath[2] = 0;
++break;case 11:
++priorityPath[2] = 1;
++moveTraveler(priorityPath, moveNumber);
++priorityPath[2] = 0;
++break;case 12:
++priorityPath[2] = 1;
++moveTraveler(priorityPath, moveNumber);
++priorityPath[2] = 0;
++break;case 13:
++priorityPath[2] = 1;
++moveTraveler(priorityPath, moveNumber);
++priorityPath[2] = 0;
++break;default:
++moveTraveler(priorityPath, moveNumber);
++break;}
++priorityPath[2] = 0;
+ 			break;
+ 		case 12:
+ 			priorityPath[2] = 1;

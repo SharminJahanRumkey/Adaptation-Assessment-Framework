@@ -1,0 +1,23 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -28,7 +28,7 @@
+ 	_y = Set_PositionY(y);
+ 	enemy_Position(ENEMY_POSITION,manualEnemySet);
+ 	x_Coordinate(X_POSITION);
+-	y_Coordinate(Y_POSITION);
++	enemy_Position(ENEMY_POSITION, manualEnemySet);
+ 	printf("x = %d, y = %d", x, y);
+ 	printf("_x = %d, _y = %d", _x, _y);
+ }
+@@ -170,7 +170,10 @@
+ 	if (Check_FuelConsistency(_fuel , _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x + 1, _y - 1))
+ 	{
+-		validPosition_X[5] = _x + 1; validPosition_Y[5] = _y - 1;
++		validPosition_X[5] = _x + 1; if (_x == -2 && _y == 2) {
++targetsCollected[1] = 1;
++}
++validPosition_Y[5] = _y - 1;
+ 	}
+ 	else
+ 	{

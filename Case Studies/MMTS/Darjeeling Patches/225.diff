@@ -1,0 +1,45 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -28,7 +28,7 @@
+ 	_y = Set_PositionY(y);
+ 	enemy_Position(ENEMY_POSITION,manualEnemySet);
+ 	x_Coordinate(X_POSITION);
+-	y_Coordinate(Y_POSITION);
++	enemy_Position(ENEMY_POSITION, manualEnemySet);
+ 	printf("x = %d, y = %d", x, y);
+ 	printf("_x = %d, _y = %d", _x, _y);
+ }
+@@ -51,7 +51,7 @@
+ 				Y_POSITION, _x, _y, validPosition_X, validPosition_Y, fuel, min_fuel, max_fuel);
+ 			if (canMove)
+ 			{
+-				checkMovePriority(caseId);
++				validPosition_Y[5] = _y - 1;checkMovePriority(caseId);
+ 				// sP End
+ 				
+ 				//Start of checking for target collection
+@@ -156,7 +156,14 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[3] = -100000; validPosition_Y[3] = -100000;
++		validPosition_X[3] = -100000; if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION, X_POSITION, Y_POSITION, _x + 1, _y + 1)) {
++validPosition_X[4] = _x + 1;
++validPosition_Y[4] = _y + 1;
++} else {
++validPosition_X[4] = -100000;
++validPosition_Y[4] = -100000;
++}
++validPosition_Y[3] = -100000;
+ 	}
+ 	if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x + 1, _y + 1))
+@@ -362,7 +369,7 @@
+ 	int changeFuel = getChangeFuel(_x, _y, validPosition_X[newPos], validPosition_Y[newPos]);
+ 	_x = validPosition_X[newPos];
+ 	_y = validPosition_Y[newPos];
+-	if(waiting){
++	validPosition_Y[1] = _y - 1;if(waiting){
+ 		for(int i = 0; i < moveNumber; i++){
+ 			if(previousPathX[i] == _x && previousPathY[i] == _y){
+ 				previouslyTread = 1;

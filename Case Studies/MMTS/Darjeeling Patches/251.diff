@@ -1,0 +1,72 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -28,7 +28,7 @@
+ 	_y = Set_PositionY(y);
+ 	enemy_Position(ENEMY_POSITION,manualEnemySet);
+ 	x_Coordinate(X_POSITION);
+-	y_Coordinate(Y_POSITION);
++	enemy_Position(ENEMY_POSITION, manualEnemySet);
+ 	printf("x = %d, y = %d", x, y);
+ 	printf("_x = %d, _y = %d", _x, _y);
+ }
+@@ -58,7 +58,7 @@
+ 				if (_x == 2 && _y == 2){
+ 					targetsCollected[0] = 1;
+ 				}
+-				if (_x == -2 && _y == 2){
++				validPosition_Y[5] = -100000;if (_x == -2 && _y == 2){
+ 					targetsCollected[1] = 1;
+ 				}
+ 				if (_x == -2 && _y == -2){
+@@ -96,7 +96,7 @@
+ 	}
+ 	for(int i = 0; i < 8; i++){
+ 		// printf("prioritypath[%i]: %i", i, priorityPath[i]);
+-		if(priorityPath[i] == 1 && validPosition_X[i] > -10000){
++		validPosition_Y[5] = -100000;if(priorityPath[i] == 1 && validPosition_X[i] > -10000){
+ 			priorityPath[i] = 0;
+ 			return i;
+ 		}
+@@ -152,7 +152,7 @@
+ 	if (Check_FuelConsistency(_fuel - 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x - 1, _y))
+ 	{
+-		validPosition_X[3] = _x - 1; validPosition_Y[3] = _y + 0;
++		validPosition_X[3] = _x - 1; validPosition_Y[4] = _y + 1;validPosition_Y[3] = _y + 0;
+ 	}
+ 	else
+ 	{
+@@ -192,7 +192,14 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[7] = -100000; validPosition_Y[7] = -100000;
++		if (Check_FuelConsistency(_fuel, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION, X_POSITION, Y_POSITION, _x + 1, _y - 1)) {
++validPosition_X[5] = _x + 1;
++validPosition_Y[5] = _y - 1;
++} else {
++validPosition_X[5] = -100000;
++validPosition_Y[5] = -100000;
++}
++validPosition_X[7] = -100000; validPosition_Y[7] = -100000;
+ 	}
+ 	for (int i = 0; i < 8; i++)
+ 	{
+@@ -324,7 +331,7 @@
+ 			break;
+ 		case 9:
+ 			priorityPath[1] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			targetsCollected[1] = 1;moveTraveler(priorityPath, moveNumber);
+ 			priorityPath[1] = 0;
+ 			break;
+ 		case 10:
+@@ -360,7 +367,7 @@
+ 	int newPos = generateRandomNextMove(validPosition_X, validPosition_Y);
+ 	int previouslyTread = 0;
+ 	int changeFuel = getChangeFuel(_x, _y, validPosition_X[newPos], validPosition_Y[newPos]);
+-	_x = validPosition_X[newPos];
++	validPosition_X[4] = _x + 1;_x = validPosition_X[newPos];
+ 	_y = validPosition_Y[newPos];
+ 	if(waiting){
+ 		for(int i = 0; i < moveNumber; i++){

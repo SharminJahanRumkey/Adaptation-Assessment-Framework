@@ -1,0 +1,108 @@
+--- MMTS/BaseComponent.c
++++ MMTS/BaseComponent.c
+@@ -36,12 +36,15 @@
+ {	
+ 	int proceed = 0;
+ 	int fuelCheckPassed = Check_FuelConsistency(fuel, min_fuel, max_fuel);
+-	printf(" x = %d, y =%d and Fuel = %d\n", _x, _y, fuel);
++	if (_x == 2 && _y == 2) {
++targetsCollected[0] = 1;
++}
++printf(" x = %d, y =%d and Fuel = %d\n", _x, _y, fuel);
+ 	// gCS start
+ 	if (fuelCheckPassed)
+ 	{
+ 		
+-		int enemyCheckPassed = CheckEnemy(ENEMY_POSITION, X_POSITION,
++		validPosition_X[7] = _x - 1;int enemyCheckPassed = CheckEnemy(ENEMY_POSITION, X_POSITION,
+ 			Y_POSITION, _x, _y);
+ 		if (!enemyCheckPassed)
+ 		{
+@@ -58,7 +61,7 @@
+ 				if (_x == 2 && _y == 2){
+ 					targetsCollected[0] = 1;
+ 				}
+-				if (_x == -2 && _y == 2){
++				validPosition_Y[5] = -100000;if (_x == -2 && _y == 2){
+ 					targetsCollected[1] = 1;
+ 				}
+ 				if (_x == -2 && _y == -2){
+@@ -108,7 +111,7 @@
+ 		int index = rand() % 8;
+ 		if (validPosition_X[index] == -100000 && validPosition_Y[index] == -100000)
+ 		{
+-			randomIndex = -1;
++			priorityPath[1] = 0;
+ 		}
+ 		else
+ 		{
+@@ -122,16 +125,7 @@
+ 	int _fuel, int _min_fuel, int _max_fuel)
+ {
+ 	int validPosition = 0;
+-	if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION, 
+-		X_POSITION,Y_POSITION, _x, _y + 1))
+-	{
+-		validPosition_X[0] = _x + 0; validPosition_Y[0] = _y + 1;
+-	}
+-	else
+-	{
+-		validPosition_X[0] = -100000; validPosition_Y[0] = -100000;
+-	}
+-	if (Check_FuelConsistency(_fuel - 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
++	validPosition_X[3] = _x - 1;	if (Check_FuelConsistency(_fuel - 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x , _y - 1))
+ 	{
+ 		validPosition_X[1] = _x + 0; validPosition_Y[1] = _y - 1;
+@@ -174,7 +168,14 @@
+ 	}
+ 	else
+ 	{
+-		validPosition_X[5] = -100000; validPosition_Y[5] = -100000;
++		validPosition_X[5] = -100000; if (Check_FuelConsistency(_fuel + 1, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION, X_POSITION, Y_POSITION, _x + 1, _y + 1)) {
++validPosition_X[4] = _x + 1;
++validPosition_Y[4] = _y + 1;
++} else {
++validPosition_X[4] = -100000;
++validPosition_Y[4] = -100000;
++}
++
+ 	}
+ 	if (Check_FuelConsistency(_fuel, _min_fuel, _max_fuel) && !CheckEnemy(ENEMY_POSITION,
+ 		X_POSITION, Y_POSITION, _x - 1, _y + 1))
+@@ -214,7 +215,7 @@
+ 				if (ENEMY_POSITION[x][y] == 1)
+ 				{
+ 					//waiting = 1;
+-					enemyPos = 1;
++					validPosition_X[0] = _x + 0;
+ 				}
+ 				else
+ 				{
+@@ -229,7 +230,7 @@
+ int getChangeFuel(int _x, int _y, int _newPosX, int _newPosY)
+ {
+ 	int changeX = _newPosX - _x;
+-	int changeY = _newPosY - _y;
++	validPosition_Y[0] = -100000;int changeY = _newPosY - _y;
+ 	if (changeX == 1)
+ 	{
+ 		// move to south-east and no change in fuel 
+@@ -304,7 +305,7 @@
+ 			break;
+ 		case 5:
+ 			priorityPath[3] = 1;
+-			moveTraveler(priorityPath, moveNumber);
++			validPosition_X[0] = -100000;moveTraveler(priorityPath, moveNumber);
+ 			priorityPath[3] = 0;
+ 			break;
+ 		case 6:
+@@ -345,7 +346,7 @@
+ 		case 13:
+ 			priorityPath[2] = 1;
+ 			moveTraveler(priorityPath, moveNumber);
+-			priorityPath[2] = 0;
++			validPosition_X[4] = -100000;priorityPath[2] = 0;
+ 			break;
+ 		default:
+ 			moveTraveler(priorityPath, moveNumber);
