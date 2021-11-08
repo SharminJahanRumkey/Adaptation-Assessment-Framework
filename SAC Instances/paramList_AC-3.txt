@@ -1,0 +1,34 @@
+Context|AC-3 [1]|accessControlPolicy =  "identity-based policy" 
+Solution|AC-3 M1Sn1| log  of  connection request
+Solution|AC-3 M1Sn2| log  of auth decision
+Solution|AC-3 M2Sn2| test cases of apply authorization
+Solution|AC-3 M2Sn3| log of send data
+MainGoal|AC|3|AC-3|information system|enforces approved authorizations for logical access to information and system resources in accordance with applicable access control policies|high|val(authorizationApproval),val(accessControlPolicy)|1
+MainGoal|AC|21|AC-21|organization|enable authorized users to determine whether access authorizations assigned to a sharing partner match the information’s access and use restrictions|high|val(authorizationDecision)|1
+MainGoal|AC|18|AC-18|organization|establish configuration requirements, connection requirements, and implementation guidance for each type of wireless acces|high|val(usageRestrictions ),sat(usageRestrictions),val(connectionRequirement),sat(connectionRequirement),val(implementationGuidance), sat(implementationGuidance)|1
+ReqGoal|AC-3 Req1|enforceAuthorization|check conncetion request and enforce authorization approval|1
+moduleGoal|AC-3 M1|getAuthorization|1
+moduleGoal|AC-3 M2|applyAuthorization|1
+oppGoal|AC-3 M1 G1|Conn|get request|1
+oppGoal|AC-3 M1 G2|AuthConn|set true for authorized connection|1
+oppGoal|AC-3 M2 G1|Conn|set true for authorized connection|1
+oppGoal|AC-3 M2 G2|send|send data|1
+strategy|AC-3 S1|enforceAuthorization
+strategy|AC-3 M1S1|getAuthorization
+strategy|AC-3 M2S1|applyAuthorization
+InContextOf|AC-3 Main|AC-3 [1]
+SupportedBy|AC-3 Main|AC-3 S1
+SupportedBy|AC-3 S1|AC-3 Req1
+SupportedBy|AC-3 Req1|AC-3 M1
+SupportedBy|AC-3 Req1|AC-3 M2
+SupportedBy|AC-3 M1|AC-3 M1 G1
+SupportedBy|AC-3 M1|AC-3 M1 G2
+SupportedBy|AC-3 M2|AC-3 M2 G1
+SupportedBy|AC-3 M2|AC-3 M2 G2
+SupportedBy|AC-3 M1 G1|AC-3 M1Sn1
+SupportedBy|AC-3 M1 G2|AC-3 M1Sn2
+SupportedBy|AC-3 M2 G1|AC-3 M2Sn2
+SupportedBy|AC-3 M2 G2|AC-3 M2Sn3
+SupportedBy|AC-3 Main|AC-21 Main|val(accessControlPolicy)
+SupportedBy|AC-21 Main|AC-3 Main|val(authorizationDecision)
+SupportedBy|AC-18 Main|AC-3 Main|val(usageRestrictions),val(connectionRequirement),val(implementationGuidance)
