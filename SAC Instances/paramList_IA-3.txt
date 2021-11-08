@@ -1,0 +1,30 @@
+Context|IA-3[1]|deviceType = "wearables"
+Context|IA-3[2]|connectionType = "Bluetooth"
+Solution|IA-3 MSn1|Log of  device pairing request 
+MainGoal|IA|3|IA-3|information system |uniquely identifies and authenticates devices before establishing a connection|high|val(deviceType),val(connectionType),sat(authentication),sat(identification)|1
+MainGoal|AC|18|AC-18|organization|establish configuration requirements, connection requirements, and implementation guidance for each type of wireless acces|high|val(usageRestrictions ),sat(usageRestrictions),val(connectionRequirement),sat(connectionRequirement),val(implementationGuidance), sat(implementationGuidance)|1
+ReqGoal|IA-3 Req1|authenticateDevices|Generate PIN to identify and authenticate devices before connection for limited time|1
+moduleGoal|SAC IA-3 M1|GeneratePIN|1
+moduleGoal|SAC IA-3 M2|pairingDevice|1
+oppGoal|SAC IA-3 M1- G1|PIN|set for device pairing data|1
+oppGoal|SAC IA-3 M1- G2|send|send data for pairing|1
+oppGoal| SAC IA-3 M2- G1|Conn|set true to pair with authorized devicea|1
+strategy|S1|authenticateDevices
+strategy|M1 S1|GeneratePIN
+strategy|M2 S1|pairingDevice
+InContextOf|IA-3 Main|IA-3[1]
+InContextOf|IA-3 Main|IA-3[2]
+SupportedBy|IA-3 Main|S1
+SupportedBy|S1|IA-3 Req1
+SupportedBy|IA-3 Req1|SAC IA-3 M1
+SupportedBy|IA-3 Req1|SAC IA-3 M2
+SupportedBy|SAC IA-3 M1|M1 S1
+SupportedBy|SAC IA-3 M2|M2 S1
+SupportedBy|M1 S1|SAC IA-3 M1- G1
+SupportedBy|M1 S1|SAC IA-3 M1- G2
+SupportedBy|M2 S1|SAC IA-3 M2- G1
+SupportedBy|SAC IA-3 M1- G1|IA-3 MSn1
+SupportedBy|SAC IA-3 M1- G2|IA-3 MSn1
+SupportedBy|SAC IA-3 M2- G1|IA-3 MSn1
+SupportedBy|IA-3 Main|AC-18 Main|val(deviceType),val(connectionType),sat(authentication),sat(identification)
+SupportedBy|AC-18 Main|IA-3 Main|val(usageRestrictions )
