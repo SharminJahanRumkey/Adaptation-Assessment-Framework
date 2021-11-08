@@ -1,0 +1,15 @@
+Context|AC-4[1]|IFC policy =  IFC configuration mapping
+MainGoal|SI|7|SI-7|Information system|employs integrity verification tools to detect unauthorized changes to the information|high|val(Information),val(action),sat(integrityStatus)|1
+MainGoal|AC|4|AC-4|Information system|enforces approved authorizations for controlling the flow of information within the system and between connected systems|high|sat(authorizationStatus)|1
+ReqGoal|AC-4 Req1|services' Authorization capability |The enforced authorization to connect a system for information flow must be validated|1
+moduleGoal|DS AC-4 Goal|Drug services' Authorization capability|1
+moduleGoal|AS AC-4 Goal|Alarm services' Authorization capability|1
+moduleGoal|MAS AC-4 Goal|Medical Analysis services' Authorization capability|1
+strategy|S2 |services' confidence on Authorization capability
+InContextOf|AC-4 Main|AC-4[1]
+SupportedBy|AC-4 Main|S2
+SupportedBy|S2|AC-4 Req1
+SupportedBy|AC-4 Req1|DS AC-4 Goal
+SupportedBy|AC-4 Req1|AS AC-4 Goal
+SupportedBy|AC-4 Req1|MAS AC-4 Goal
+SupportedBy|AC-4 Main|SI-7 Main|sat(authorizationStatus)
