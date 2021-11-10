@@ -103,7 +103,7 @@ public class InstantiateXml {
                         goalList.add(modGoal);
                     }
                 }
-                else if (params[0].equalsIgnoreCase("oppgoal")){
+                else if (params[0].equalsIgnoreCase("opgoal")){
                     if(params.length == 5){
                         OppGoal oppGoal = new OppGoal(params[1],params[2],params[3], params[4]) ;
 

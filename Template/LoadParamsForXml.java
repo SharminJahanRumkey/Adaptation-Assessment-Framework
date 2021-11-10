@@ -142,7 +142,7 @@ public class LoadParamsForXml {
 
             } else if (g instanceof OppGoal) {
 
-                Element goal = document.createElement("OppGoal");
+                Element goal = document.createElement("OpGoal");
                 root.appendChild(goal);
 
                 Attr identifier = document.createAttribute("identifier");
