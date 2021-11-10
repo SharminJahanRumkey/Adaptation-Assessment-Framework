@@ -1,0 +1,84 @@
+Context|AU-5(a)[1]|auditFailurePersonnel = "CSO"
+Context|AU-5(b)[1]|auditFailureAction = "stop generating audit records"
+Context|AU-5(1)[1][a]| auditCapPersonnel = "CSO"
+Context|AU-5(1)[1][c]|auditCapLocations = "HQ"
+Context|AU-5(1)[2]|capWarnTimePeriod = 10 seconds
+Context|AU-5(1)[3]|  capRatioLimit = 75% 
+Context|AU-4[1]|capacity = 100 GB 
+Context|AU-5(1)[1][b]|auditCapRoles = "C-Suite"
+Solution|MSn1|Test result on  auditTrail's capacity
+Solution|MSn7|capAlert log
+Solution|MSn6|Test result on capRatioLimit
+Solution|MSn2|Log of audit  trail
+Solution|MSn4|Test result on insertionPoint
+MainGoal|AU|5|AU-5|information system|alerts to authority in the event of an audit processing failure|high|sat(capAlert),val(auditFailureAction),val(auditFailurePersonnel)|1
+MainGoal|AU|5|AU-5(1)|information system|provides a warning on allocated audit record storage volume|high|val(capAlert),val(capRatioLimit),val(capWarnTimePeriod),val(auditCapPersonnel),val(auditCapRoles),val(auditCapLocation)|1
+MainGoal|AU|4|AU-4|organization|allocates audit record storage capacity in accordance with requirement|high|val(capacity)|1
+MainGoal|AU|2|AU-2|organization|identify the types of events that the system is capable of logging in support of the audit function|high|sat(auditEvent),val(record)|1
+MainGoal|AU|11|AU-11|organization|retain audit records for to provide support for after-the-fact investigations of incidents and to meet regulatory and organizational information retention requirements|high|sat(auditRecordRetention),val(retentionPeriod)|1
+MainGoal|SI|12|SI-12|organization|Manage and retain information within the system and information output from the system in accordance with applicable laws, executive orders, directives, regulations, policies, standards, guidelines and operational requirements|high|sat(complianceInfo)|1
+ReqGoal|AU-5|auditFailureAlertMechanism|alert in the event of audit processing failure|1
+ReqGoal|AU-5(1)|auditFailureHandleMechanism|inv (#auditTrail < capRatioLimit × capacity ∨ capAlert)|1
+ReqGoal|AU-4|allocateCapacityMechanism|allocating space for auditTrail equal to capacity|1
+moduleGoal|M1|checkCongestion|1
+moduleGoal|M2|dequeueAuditRecord1
+moduleGoal|M3|findInsertionPoint|1
+moduleGoal|M4|checkTimeTolerance|1
+moduleGoal|M5|checkCapacity|1
+moduleGoal|M6|storeAuditRecord|1
+opGoal|G-1|record|contains the  audit record to be inserted|1
+opGoal|G-2|capRatioLimit|maintains the storage capacity percentage|1
+opGoal|G-3|capacity|maintains organization- defined storage capacity|1
+opGoal|G-4|capAlert| true when auditTrail exceeds capRatioLimit|1
+opGoal|G-5|insertionPoint|maintains the index to insert  next record within existing auditTrail|1
+opGoal|G-6|auditTrail|performs audit record storage|1
+strategy|S1|auditFailureHandleMechanism
+strategy|S2|allocateCapacityMechanism
+strategy|S3|auditFailureAlertMechanism
+strategy|MS5|checkCapacity
+InContextOf|AU-5 Main|AU-5(a)[1]
+InContextOf|AU-5 Main|AU-5(b)[1]
+InContextOf|AU-5(1) Main|AU-5(1)[1][a]
+InContextOf|AU-5(1) Main|AU-5(1)[1][b]
+InContextOf|AU-5(1) Main|AU-5(1)[1][c]
+InContextOf|AU-5(1) Main|AU-5(1)[2]
+InContextOf|AU-5(1) Main|AU-5(1)[3]
+InContextOf|AU-4 Main|AU-4[1]
+SupportedBy|AU-5 Main|S3
+SupportedBy|AU-5(1) Main|S1
+SupportedBy|AU-4 Main|S2
+SupportedBy|S3|AU-5 Req
+SupportedBy|S2|AU-4 Req
+SupportedBy|S1|AU-5(1) Req
+SupportedBy|AU-5 Req|MSn1
+SupportedBy|AU-5 Req|MSn7
+SupportedBy|AU-5 Req|MSn6
+SupportedBy|AU-5(1) Req|M1
+SupportedBy|AU-5(1) Req|M2
+SupportedBy|AU-5(1) Req|M3
+SupportedBy|AU-5(1) Req|M4
+SupportedBy|AU-5(1) Req|M5
+SupportedBy|AU-5(1) Req|M6
+SupportedBy|AU-4 Req|MSn1
+SupportedBy|AU-4 Req|MSn7
+SupportedBy|M5|MS5
+SupportedBy|MS5|G-1
+SupportedBy|MS5|G-2
+SupportedBy|MS5|G-3
+SupportedBy|MS5|G-4
+SupportedBy|MS5|G-5
+SupportedBy|MS5|G-6
+SupportedBy|G-1|MSn2
+SupportedBy|G-2|MSn6
+SupportedBy|G-3|MSn1
+SupportedBy|G-4|MSn7
+SupportedBy|G-5|MSn4
+SupportedBy|G-6|MSn2
+SupportedBy|AU-5(1)|AU-5|val(capAlert),val(capRatioLimit)
+SupportedBy|AU-5|AU-5(1)|val(capacity)
+SupportedBy|AU-4|AU-5|val(capacity)
+SupportedBy|AU-5|AU-4|sat(capAlert)
+SupportedBy|AU-2|AU-4|val(record)
+SupportedBy|AU-11|AU-4|val(retentionPeriod)
+SupportedBy|AU-5|SI-12|val(retentionPeriod),val(auditFailurePersonnel)
+SupportedBy|SI-12|AU-5|sat(complianceInfo)

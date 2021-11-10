@@ -9,10 +9,10 @@ MainGoal|AC|18|AC-18|organization|establish configuration requirements, connecti
 ReqGoal|AC-3 Req1|enforceAuthorization|check conncetion request and enforce authorization approval|1
 moduleGoal|AC-3 M1|getAuthorization|1
 moduleGoal|AC-3 M2|applyAuthorization|1
-oppGoal|AC-3 M1 G1|Conn|get request|1
-oppGoal|AC-3 M1 G2|AuthConn|set true for authorized connection|1
-oppGoal|AC-3 M2 G1|Conn|set true for authorized connection|1
-oppGoal|AC-3 M2 G2|send|send data|1
+opGoal|AC-3 M1 G1|Conn|get request|1
+opGoal|AC-3 M1 G2|AuthConn|set true for authorized connection|1
+opGoal|AC-3 M2 G1|Conn|set true for authorized connection|1
+opGoal|AC-3 M2 G2|send|send data|1
 strategy|AC-3 S1|enforceAuthorization
 strategy|AC-3 M1S1|getAuthorization
 strategy|AC-3 M2S1|applyAuthorization
