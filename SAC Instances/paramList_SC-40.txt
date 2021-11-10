@@ -7,11 +7,11 @@ MainGoal|AC|18|AC-18|organization|establish configuration requirements, connecti
 ReqGoal|SC-40 Req1|authorizeConnectionRequest|authorize connection request before connecting devices|1
 moduleGoal|SAC SC-40 M1|authorizeConnectionRequest|1
 moduleGoal|SAC SC-40 M2|connectToDevice|1
-oppGoal|SAC SC-40 M1- G1|Conn|get Conn for device authorization|1
-oppGoal|SAC SC-40 M1- G2|Conn|check request with authorized device list|1
-oppGoal|SAC SC-40 M1- G3|AuthConn|set true for authorized device|1
-oppGoal|SAC SC-40 M2- G1|Conn|set true for authorized device|1
-oppGoal|SAC SC-40 M2- G2|send|send data to connected device|1
+opGoal|SAC SC-40 M1- G1|Conn|get Conn for device authorization|1
+opGoal|SAC SC-40 M1- G2|Conn|check request with authorized device list|1
+opGoal|SAC SC-40 M1- G3|AuthConn|set true for authorized device|1
+opGoal|SAC SC-40 M2- G1|Conn|set true for authorized device|1
+opGoal|SAC SC-40 M2- G2|send|send data to connected device|1
 strategy|S1|connectAuthorizedDevice
 strategy|M1 S1|authorizeConnectionRequest
 strategy|M2 S1|connectToDevice

@@ -6,9 +6,9 @@ MainGoal|AC|18|AC-18|organization|establish configuration requirements, connecti
 ReqGoal|IA-3 Req1|authenticateDevices|Generate PIN to identify and authenticate devices before connection for limited time|1
 moduleGoal|SAC IA-3 M1|GeneratePIN|1
 moduleGoal|SAC IA-3 M2|pairingDevice|1
-oppGoal|SAC IA-3 M1- G1|PIN|set for device pairing data|1
-oppGoal|SAC IA-3 M1- G2|send|send data for pairing|1
-oppGoal| SAC IA-3 M2- G1|Conn|set true to pair with authorized devicea|1
+opGoal|SAC IA-3 M1- G1|PIN|set for device pairing data|1
+opGoal|SAC IA-3 M1- G2|send|send data for pairing|1
+opGoal| SAC IA-3 M2- G1|Conn|set true to pair with authorized devicea|1
 strategy|S1|authenticateDevices
 strategy|M1 S1|GeneratePIN
 strategy|M2 S1|pairingDevice
