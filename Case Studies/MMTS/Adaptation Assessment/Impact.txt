@@ -1,0 +1,13 @@
+enemyPos;ignored;0.2
+enemyPos;partial ignore;0.5
+enemyPos;avoided;1.0
+priorityPath;path2;0.9
+priorityPath;path3;0.9
+priorityPath;path4;0.9
+priorityPath;path1;1.0
+fuel;<=maxFuel;0.9
+fuel;>=maxFuel;0.2
+fuel;>=minFuel;0.9
+fuel;<=minFuel;0.2
+maxFuel;<=minFuel;0.2
+canMove;disable;0.5
