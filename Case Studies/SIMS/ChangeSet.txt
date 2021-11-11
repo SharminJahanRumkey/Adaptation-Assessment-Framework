@@ -1,0 +1,6 @@
+{(capRatioLimit;=90%;(null,null);null;audit processing failure)}
+{(auditTrail;offload older record;(buffer,offloadRecord);Log of buffer storage;audit processing failure)
+(insertionPoint;<= #record;(null,reset);Test result on insertionPoint in auditTrail;audit processing failure)}
+{(auditTrail;overwrite older record;(null,overwrite);Log of audit trail;audit processing failure)
+(insertionPoint;<= #record;(null,reset);Test result on insertionPoint in auditTrail;audit processing failure)
+(capAlert;false;(null,disable);capAlert log;audit processing failure)}

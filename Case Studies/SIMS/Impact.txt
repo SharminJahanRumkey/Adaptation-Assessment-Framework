@@ -1,0 +1,19 @@
+capacity;=100;1.0
+capacity;>100;0.9
+capacity;<100;0.5
+capacity;<=0;0.0
+capRatioLimit;=75%;1.0
+capRatioLimit;<75%;0.5
+capRatioLimit;>75%;0.2
+capRatioLimit;=90%;0.2
+capRatioLimit;<=0%;0.0
+capRatioLimit;>=100%;0.0
+auditTrail;store record;1.0
+auditTrail;offload older record;0.5
+auditTrail;overwrite older record;0.2
+auditTrail;drop record;0.0
+insertionPoint;= #record;1.0
+insertionPoint;>= #record;0.9;
+insertionPoint;<= #record;0.5
+insertionPoint;< 0;0.0
+capAlert;false;0.2
