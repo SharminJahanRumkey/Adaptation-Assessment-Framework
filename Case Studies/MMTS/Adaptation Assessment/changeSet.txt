@@ -1,0 +1,2 @@
+{(enemyPos;ignored;(null,disableEnemyCheck);log of system state;fail to collect target)}
+{(priorityPath;path2;(null,enablePriorityPath2);log of system state;fail to collect target)}
