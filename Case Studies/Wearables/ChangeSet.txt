@@ -1,0 +1,8 @@
+{(send;Send null data;(null,sendEmptyString);sendDataLog;insecure state)}
+{(send;Send null data;(null,sendEmptyString);sendDataLog;insecure state)
+(AuthConn;Set to true when connected to a non authorized device;(null,disableEnforceAuthorization);AuthApplyTest;insecure state)}
+{(send;Send null data;(null,sendEmptyString);sendDataLog;insecure state)
+(Conn;Set to false when connected to an authorized device;(null,disableConnection);ConnectionTest;insecure state)}
+{(send;Send null data;(null,sendEmptyString);sendDataLog;insecure state)
+(Conn;Set to false when connected to an authorized device;(null,disableConnection);ConnectionTest;insecure state)
+(AuthConn;Set to true when connected to a non authorized device;(null,disableEnforceAuthorization);AuthApplyTest;insecure state)}

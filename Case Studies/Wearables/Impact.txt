@@ -1,0 +1,5 @@
+AuthConn;Set to true when connected to an authorized device;1.0
+AuthConn;Set to true when connected to a non authorized device;0.2
+send;Send null data;0.5
+Conn;Set to true when connected to an authorized device;1.0
+Conn;Set to false when connected to an authorized device;0.2
