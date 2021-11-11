@@ -1,29 +1,31 @@
 Context|SI-7[1]|changeInformation = {"fuel", "maxFuel", "minFuel", "enemyPos", "priorityPath"} 
 Context|SI-7[2]|safeguardAction = {"quarantine"}
 Solution|MSn1-1|Log of system state
-MainGoal|SI|7|SI-7| information system|employs integrity verification tools to detect unauthorized changes and take the following actions when unauthorized changes are detected|high|sat(integrityStatus),val(changeInformation),val(safeguardAction)|1
-ReqGoal|SI-7 Req1|integrityInspectionHandler|□[sat(integrityStatus, changeInformation) V     (¬sat(integrityStatus, changeInformation) ⇒ ○[respond(safeguardResp, changeInformation)])|1
+MainGoal|SI|7|SI-7 Main| information system|employs integrity verification tools to detect unauthorized changes and take the following actions when unauthorized changes are detected|high|sat(integrityStatus),val(changeInformation),val(safeguardAction)|1
+ReqGoal|SI-7 Req1|integrityInspectionHandler|□[sat(integrityStatus, changeInformation) V (¬sat(integrityStatus, changeInformation) ⇒ ○[respond(safeguardResp, changeInformation)])|1
 moduleGoal|SAC M1|checkIntegrityStatus|1
 moduleGoal|SAC M2|activeSafeGuardAction|1
-oppGoal|M1 G-1|enemyPos|avoided|1
-oppGoal|M1 G-2|priorityPath|set|1
-oppGoal|M1 G-3|maxFuel, minFuel|maintained|1
-oppGoal|M1 G-4|fuel|within the range of maxFuel and minFuel|1
-oppGoal|M2 G-1|safeguardAction|activates on anomaly detection|1
-strategy|SAC M1|integrityInspectionHandler
+opGoal|M1 G-1|enemyPos|avoided|1
+opGoal|M1 G-2|priorityPath|set|1
+opGoal|M1 G-3|maxFuel, minFuel|maintained|1
+opGoal|M1 G-4|fuel|within the range of maxFuel and minFuel|1
+opGoal|M2 G-1|safeguardAction|activates on anomaly detection|1
+strategy|S1|integrityInspectionHandler
 strategy|MS1|checkIntegrityStatus
 strategy|MS2|activeSafeGuardAction
 InContextOf|SI-7 Main|SI-7[1]
 InContextOf|SI-7 Main|SI-7[2]
-SupportedBy|SI-7 Main|SAC M1
-SupportedBy|SAC M1|SI-7 Req1
+SupportedBy|SI-7 Main|S1
+SupportedBy|S1|SI-7 Req1
 SupportedBy|SI-7 Req1|SAC M1
 SupportedBy|SI-7 Req1|SAC M2
-SupportedBy|SAC M1|M1 G-1
-SupportedBy|SAC M1|M1 G-2
-SupportedBy|SAC M1|M1 G-3
-SupportedBy|SAC M1|M1 G-4
-SupportedBy|SAC M2|M2 G-1
+SupportedBy|SAC M1|MS1
+SupportedBy|SAC M2|MS2
+SupportedBy|MS1|M1 G-1
+SupportedBy|MS1|M1 G-2
+SupportedBy|MS1|M1 G-3
+SupportedBy|MS1|M1 G-4
+SupportedBy|MS2|M2 G-1
 SupportedBy|M1 G-1|MSn1-1
 SupportedBy|M1 G-2|MSn1-1
 SupportedBy|M1 G-3|MSn1-1
