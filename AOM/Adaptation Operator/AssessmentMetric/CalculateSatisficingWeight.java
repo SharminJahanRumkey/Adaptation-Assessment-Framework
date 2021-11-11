@@ -50,7 +50,7 @@ public class CalculateSatisficingWeight {
             }
             else
             {
-                sl = 1;
+                sl = Double.parseDouble(mainGoal.getAchievementWeight());
                 totalSL += sl;
             }
             System.out.println(mainGoal.getIdentifier()+" Satisficing level " + sl );
