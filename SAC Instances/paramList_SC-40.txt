@@ -2,8 +2,8 @@ Context|SC-40[1]|wirelessLinksTypes = "Bluetooth"
 Context|SC-40[2]|attackTypes = "Man-in-the-Middle"
 Solution|SC-40 MSn1|Log of  wireless connection request 
 Solution|SC-40 MSn2|Log of  wireless connected devices 
-MainGoal|SC|40|SC-40|information system |protects external and internal wireless links from the signal parameter attacks|high|val(wirelessLinksTypes), val(attackTypes),val(wirelessLinksCapability)|1
-MainGoal|AC|18|AC-18|organization|establish configuration requirements, connection requirements, and implementation guidance for each type of wireless acces|high|val(usageRestrictions ),sat(usageRestrictions),val(connectionRequirement),sat(connectionRequirement),val(implementationGuidance), sat(implementationGuidance)|1
+MainGoal|SC|40|SC-40 Main|information system |protects external and internal wireless links from the signal parameter attacks|high|val(wirelessLinksTypes), val(attackTypes),val(wirelessLinksCapability)|1
+MainGoal|AC|18|AC-18 Main|organization|establish configuration requirements, connection requirements, and implementation guidance for each type of wireless acces|high|val(usageRestrictions ),sat(usageRestrictions),val(connectionRequirement),sat(connectionRequirement),val(implementationGuidance), sat(implementationGuidance)|1
 ReqGoal|SC-40 Req1|authorizeConnectionRequest|authorize connection request before connecting devices|1
 moduleGoal|SAC SC-40 M1|authorizeConnectionRequest|1
 moduleGoal|SAC SC-40 M2|connectToDevice|1
