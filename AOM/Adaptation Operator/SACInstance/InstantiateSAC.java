@@ -78,7 +78,7 @@ public class InstantiateSAC {
                 this.mainGoals.add(new MainGoal(eElement.getAttribute("family").toString(),
                         eElement.getAttribute("number").toString(),
                         eElement.getAttribute("identifier").toString(),
-                        eElement.getAttribute("actor").toString(),
+                        eElement.getAttribute("implemented_by").toString(),
                         eElement.getAttribute("control_action").toString(),
                         eElement.getAttribute("baseline_allocation").toString(),
                         eElement.getAttribute("provision_set").toString(),
@@ -302,9 +302,9 @@ public class InstantiateSAC {
                 identifier.setValue(((MainGoal) g).getIdentifier());
                 goal.setAttributeNode(identifier);
 
-                Attr actor = document.createAttribute("actor");
-                actor.setValue(((MainGoal) g).getActor());
-                goal.setAttributeNode(actor);
+                Attr implementedBy = document.createAttribute("implemented_by");
+                implementedBy.setValue(((MainGoal) g).getImplementedBy());
+                goal.setAttributeNode(implementedBy);
 
                 Attr action = document.createAttribute("control_action");
                 action.setValue(((MainGoal) g).getControlAction());
@@ -325,7 +325,7 @@ public class InstantiateSAC {
 
                 Attr Statement = document.createAttribute("statement");
                 String stmt = "Goal: " + ((MainGoal) g).getFamily() + "-" + ((MainGoal) g).getNumber() + " " + g.getIdentifier() + " Main: " +
-                        ((MainGoal) g).getActor() + " " + ((MainGoal) g).getControlAction() + "; Impact = " + ((MainGoal) g).getBaselineAllocation() +
+                        ((MainGoal) g).getImplementedBy() + " " + ((MainGoal) g).getControlAction() + "; Impact = " + ((MainGoal) g).getBaselineAllocation() +
                         ", Provides= [ " + ((MainGoal) g).getProvisionSet() + "]; aw = " + g.getAchievementWeight();
                 Statement.setValue(stmt);
                 goal.setAttributeNode(Statement);
