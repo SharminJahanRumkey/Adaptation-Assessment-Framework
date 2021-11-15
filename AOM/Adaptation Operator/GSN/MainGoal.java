@@ -3,17 +3,17 @@ package GSN;
 public class MainGoal extends Goal {
     private String family;
     private String number;
-    private String actor;
+    private String implementedBy;
     private String controlAction;
     private String baselineAllocation;
     private String provisionSet;
 
-    public MainGoal( String family,String number,String identifier,String actor, String controlAction,
+    public MainGoal( String family,String number,String identifier,String implementedBy, String controlAction,
                 String baselineAllocation, String provisionSet, String achievementWeight){
         super(identifier, achievementWeight);
         this.family = family;
         this.number = number;
-        this.actor = actor;
+        this.implementedBy = implementedBy;
         this.controlAction = controlAction;
         this.baselineAllocation = baselineAllocation;
         this.provisionSet = provisionSet;
@@ -27,8 +27,8 @@ public class MainGoal extends Goal {
         this.number = number;
     }
 
-    public void setActor(String actor) {
-        this.actor = actor;
+    public void setImplementedBy(String implementedBy) {
+        this.implementedBy = implementedBy;
     }
 
     public void setBaselineAllocation(String baselineAllocation) {
@@ -61,8 +61,8 @@ public class MainGoal extends Goal {
         return number;
     }
 
-    public String getActor() {
-        return actor;
+    public String getImplementedBy() {
+        return implementedBy;
     }
 
     public String getControlAction() {
