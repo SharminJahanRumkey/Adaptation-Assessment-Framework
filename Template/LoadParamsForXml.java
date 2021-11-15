@@ -65,9 +65,9 @@ public class LoadParamsForXml {
                 identifier.setValue(((MainGoal) g).getIdentifier());
                 goal.setAttributeNode(identifier);
 
-                Attr actor = document.createAttribute("actor");
-                actor.setValue(((MainGoal) g).getActor());
-                goal.setAttributeNode(actor);
+                Attr implementedBy = document.createAttribute("implemented_by");
+                implementedBy.setValue(((MainGoal) g).getImplementedBy());
+                goal.setAttributeNode(implementedBy);
 
                 Attr action = document.createAttribute("control_action");
                 action.setValue(((MainGoal) g).getControlAction());
@@ -88,7 +88,7 @@ public class LoadParamsForXml {
 
                 Attr Statement = document.createAttribute("statement");
                 String stmt = "Goal: " + ((MainGoal) g).getFamily() + "-" + ((MainGoal) g).getNumber() + " " + g.getIdentifier() + " Main: " +
-                        ((MainGoal) g).getActor() + " " + ((MainGoal) g).getControlAction() + "; Impact = " + ((MainGoal) g).getBaselineAllocation() +
+                        ((MainGoal) g).getImplementedBy() + " " + ((MainGoal) g).getControlAction() + "; Impact = " + ((MainGoal) g).getBaselineAllocation() +
                         ", Provides= [ " + ((MainGoal) g).getProvisionSet() + "]; aw = " + g.getAchievementWeight();
                 Statement.setValue(stmt);
                 goal.setAttributeNode(Statement);
