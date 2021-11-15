@@ -27,7 +27,7 @@ public class MainGoal extends Goal {
         this.number = number;
     }
 
-    public void setActor(String implementedBy) {
+    public void setImplementedBy(String implementedBy) {
         this.implementedBy = implementedBy;
     }
 
