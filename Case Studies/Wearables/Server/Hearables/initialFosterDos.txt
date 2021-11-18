@@ -1,0 +1,61 @@
+1.  Initially, I attempted to create a loop which would continually foster and 
+    remain connected for as long a possible without disconnection.
+	- One fostering server available (normal)
+	- One attacker running a while loop to connect to that server
+	- One legit user attempting to foster
+
+    Results
+	- Legit user had to wait to get connected, but was put in a queue and
+	  eventually was given the info it needed
+	- Needs a move to a multi-threaded attacker
+
+2.  Initially modified original attacker to include a maximum number of threads
+	- 15 threads
+	- One attacker
+	- One legit user
+	- One fostering server
+    Results
+	- Weirdly, this worked pretty well. It took a lot of trying to manage
+	  to connect to the foster server
+	- Not perfect, as I was eventually able to get through. It took about
+	  ten attempts to do anything, though.
+	- Had a lot of "resource busy" errors
+	- Eventually started getting "Connection Refused" errors, making me
+	  think that this isn't perfect for longterm attacks. 
+	- That said, adding a little delay in connecting as the attacker could
+	  fix this.
+3.  Add that delay, baby
+	- still 15 threads
+	- one attacker
+	- one legit user
+	- one fostering server
+    Results
+	- Oh boy, I think I broke it. 
+	- Forced a crash of the fostering server
+	- This may be unique to the linux bluez implementation or even the
+	  python wrapper, but causing the crash is a good example of potential
+	  issues for the non-attacker
+	- It is, obviously, possible to restart the server, but the error that
+	  is thrown when this crash happens is the same as one that is thrown
+	  in normal operation and, thus, can cause a crash when attempting to 
+	  restart the server
+4.  Ok, but what if we have a bunch of fostering servers?
+	- Still 15 threads
+	- one attacker
+	- one legit user
+	- 15 fostering servers
+    Results
+	- As in 3, each server breaks. The attcker puts one thread per server
+	  and the first fostering it causes the crash
+	- When attempting to bring it back up, by the time it is brought back
+	  up the attacker is able to attempt another connection. I have yet to
+	  be able to connect from the legit user
+    One issue with multiple fostering servers
+	- Bluetooth standard limits maximum number of connections for one device
+	  to 8, thus the more fostering servers we have, the fewer active 
+	  connections we are capable of having. For each fostering server, a 
+	  non-fostering server must be shut down. 
+	- In normal use, we could have a maximum of 16 server/client connections
+	- the 15 fostering servers I have here are not possible to be connected
+	  simultaniously, at most 8 can attempt a simultanious connection
+
