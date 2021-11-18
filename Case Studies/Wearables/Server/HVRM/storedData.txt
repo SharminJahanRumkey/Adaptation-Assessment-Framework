@@ -1,0 +1,1 @@
+Humidity: 30.5%; Temperature: 32.4C; Pressure: 999.3mBar; Accelerometer pitch: 359.142697921, roll: 359.305072702, yaw: 359.999991937
