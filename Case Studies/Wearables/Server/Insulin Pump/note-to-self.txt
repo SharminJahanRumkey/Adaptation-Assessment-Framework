@@ -1,0 +1,5 @@
+go in reverse order for search for service, it'll take longer but assured you get the first possible connection. 
+
+additionally, start new service on full connect.
+
+find a way to stop advertising after the fact.
